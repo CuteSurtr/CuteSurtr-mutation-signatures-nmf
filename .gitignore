@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+
+# Local data + reference PDFs — large, reproducible from fetch scripts.
+data/raw/
+data/processed/
+references/pdfs/
+references/cache/
+figures/*.png
+figures/*.pdf
+!figures/.gitkeep
+# Demo figures are committed as portfolio artifacts.
+!figures/synthetic_recovery.png
+!figures/synthetic_loss_curve.png
+!figures/TCGA-LUAD_*.png
+
+# Processed artifacts: SBS-96 matrices are small and worth keeping.
+!data/processed/*.tsv

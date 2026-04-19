@@ -1,0 +1,199 @@
+# Curated bibliography for mutation-signatures-nmf.
+#
+# Three kinds of entries:
+#   - theses:   PhD / MSc theses at direct open-access URLs
+#   - papers:   canonical papers with stable open-access URLs (PMC, bioRxiv, arXiv, publisher OA)
+#   - searches: keyword queries for arXiv and Europe PMC APIs (pull recent preprints)
+#
+# The fetcher (references/fetch.py) reads this file, downloads all entries
+# whose `fetch: true`, and writes a BIBLIOGRAPHY.md index.
+
+theses:
+  - id: alexandrov_2014_thesis
+    author: "Alexandrov, Ludmil B."
+    year: 2014
+    title: "Signatures of Mutational Processes in Human Cancer"
+    institution: "University of Cambridge / Wellcome Sanger Institute"
+    url: "https://www.sanger.ac.uk/wp-content/uploads/large-files/205-la2-thesis.pdf"
+    kind: pdf
+    fetch: true
+    notes: >
+      The foundational thesis on mutational signatures. Chapters 2-3 derive the
+      NMF formulation and the hierarchical signature-extraction algorithm that
+      became SigProfiler. Key reading for Projects 8 and 9.
+
+  # Cambridge Apollo collection of Sanger Institute theses — crawl manually and
+  # add promising items as explicit entries below.
+  - id: sanger_apollo_collection
+    author: "various"
+    year: null
+    title: "Wellcome Sanger Institute thesis collection at Cambridge Apollo"
+    institution: "University of Cambridge"
+    url: "https://www.repository.cam.ac.uk/collections/54880bf5-8828-4525-a20d-9c5a4d5c5cff"
+    kind: landing_page
+    fetch: false
+    notes: >
+      Landing page, not a direct PDF. Browse it for additional theses from
+      Stratton / Campbell / Nik-Zainal labs and add specific items here.
+
+papers:
+  - id: alexandrov_2013_nature
+    author: "Alexandrov LB et al."
+    year: 2013
+    title: "Signatures of mutational processes in human cancer"
+    venue: "Nature"
+    pmcid: "PMC3776390"
+    doi: "10.1038/nature12477"
+    kind: pmc
+    fetch: true
+    notes: >
+      The Nature paper companion to the 2014 thesis. Introduces the 30 COSMIC
+      SBS signatures via NMF on pan-cancer WGS data.
+
+  - id: alexandrov_2013_cellreports_deciphering
+    author: "Alexandrov LB et al."
+    year: 2013
+    title: "Deciphering signatures of mutational processes operative in human cancer"
+    venue: "Cell Reports"
+    pmcid: "PMC3588146"
+    doi: "10.1016/j.celrep.2012.12.008"
+    kind: pmc
+    fetch: true
+    notes: >
+      The methods paper: hierarchical dirichlet-NMF extraction framework with
+      model-order selection via reproducibility + reconstruction error.
+
+  - id: alexandrov_2020_nature_repertoire
+    author: "Alexandrov LB et al."
+    year: 2020
+    title: "The repertoire of mutational signatures in human cancer"
+    venue: "Nature"
+    doi: "10.1038/s41586-020-1943-3"
+    biorxiv_doi: "10.1101/322859"
+    url: "https://www.biorxiv.org/content/10.1101/322859v2.full.pdf"
+    kind: pdf
+    fetch: true
+    notes: >
+      PCAWG-era update expanding to 49 SBS, 11 DBS, 17 ID signatures. Current
+      COSMIC v3 reference.
+
+  - id: nik_zainal_2012_breast
+    author: "Nik-Zainal S et al."
+    year: 2012
+    title: "Mutational processes molding the genomes of 21 breast cancers"
+    venue: "Cell"
+    pmcid: "PMC3414841"
+    doi: "10.1016/j.cell.2012.04.024"
+    kind: pmc
+    fetch: true
+    notes: >
+      First identification of kataegis; early application of signature
+      decomposition to a focused tumor type.
+
+  - id: lee_seung_2001_nmf
+    author: "Lee DD, Seung HS"
+    year: 2001
+    title: "Algorithms for non-negative matrix factorization"
+    venue: "NeurIPS"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2000/file/f9d1152547c0bde01830b7e8bd60024c-Paper.pdf"
+    kind: pdf
+    fetch: true
+    notes: >
+      Original paper deriving the multiplicative updates implemented in
+      src/mutsig/nmf.py. Appendix contains the auxiliary-function
+      monotonicity proof.
+
+  - id: boutsidis_gallopoulos_2008_nndsvd
+    author: "Boutsidis C, Gallopoulos E"
+    year: 2008
+    title: "SVD based initialization: A head start for nonnegative matrix factorization"
+    venue: "Pattern Recognition"
+    doi: "10.1016/j.patcog.2007.09.010"
+    kind: landing_page
+    fetch: false
+    notes: >
+      NNDSVD initialization used in our NMF. Often paywalled; university VPN
+      access may be required. Leaving as landing-page reference.
+
+  - id: gehring_2015_somaticsignatures
+    author: "Gehring JS et al."
+    year: 2015
+    title: "SomaticSignatures: inferring mutational signatures from single-nucleotide variants"
+    venue: "Bioinformatics"
+    pmcid: "PMC4643622"
+    doi: "10.1093/bioinformatics/btv408"
+    kind: pmc
+    fetch: true
+    notes: >
+      Bioconductor package describing a clean pipeline for SBS extraction from
+      VCF/MAF input. Good comparison reference for our features.py.
+
+  - id: degasperi_2020_framework
+    author: "Degasperi A et al."
+    year: 2020
+    title: "A practical framework and online tool for mutational signature analyses"
+    venue: "Nature Cancer"
+    pmcid: "PMC7073440"
+    doi: "10.1038/s43018-020-0027-5"
+    kind: pmc
+    fetch: true
+    notes: >
+      Signal/FitMS framework for signature fitting (assigning known signatures
+      to new samples) vs. extraction. Useful second-stage analysis.
+
+  - id: islam_2022_signatureanalyzer
+    author: "Islam SMA et al."
+    year: 2022
+    title: "Uncovering novel mutational signatures by de novo extraction with SigProfilerExtractor"
+    venue: "Cell Genomics"
+    pmcid: "PMC9903851"
+    doi: "10.1016/j.xgen.2022.100179"
+    kind: pmc
+    fetch: true
+    notes: >
+      Current-generation SigProfilerExtractor, direct comparison target for
+      our from-scratch NMF. Benchmarks against other methods.
+
+  - id: lal_2021_hmm_higher_resolution
+    author: "Lal A et al."
+    year: 2021
+    title: "Hidden Markov models lead to higher-resolution maps of mutation signature activity in cancer"
+    venue: "Communications Biology / bioRxiv"
+    biorxiv_doi: "10.1101/392639"
+    url: "https://www.biorxiv.org/content/10.1101/392639v1.full.pdf"
+    kind: pdf
+    fetch: true
+    notes: >
+      HMM-based refinement of signature activity per-position — math hook for
+      stochastic-processes self-study. Ties Projects 8 and 13.
+
+  - id: grabowski_2024_power_posteriors
+    author: "Grabowski DA et al."
+    year: 2024
+    title: "Robust discovery of mutational signatures using power posteriors"
+    venue: "bioRxiv"
+    biorxiv_doi: "10.1101/2024.10.23.619958"
+    url: "https://www.biorxiv.org/content/10.1101/2024.10.23.619958v1.full.pdf"
+    kind: pdf
+    fetch: true
+    notes: >
+      Fully-Bayesian NMF with power posteriors on PCAWG data. Modern counterpart
+      to the 2013 paper; good math-stats anchor for future extensions.
+
+# Dynamic searches (run against the APIs, cap results).
+searches:
+  - id: europepmc_mutation_signatures
+    engine: europepmc
+    query: 'mutation signatures AND non-negative matrix factorization AND cancer'
+    max_results: 20
+
+  - id: arxiv_nmf
+    engine: arxiv
+    query: 'abs:"non-negative matrix factorization" AND abs:cancer'
+    max_results: 15
+
+  - id: arxiv_branching_cancer
+    engine: arxiv
+    query: 'abs:"branching process" AND abs:cancer'
+    max_results: 10
+    # Seeds for Project 9 (clonal evolution).

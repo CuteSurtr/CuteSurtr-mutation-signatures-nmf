@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mutsig"
+version = "0.1.0"
+description = "From-scratch NMF for mutation-signature decomposition on TCGA somatic variants."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "nex8842" }]
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "scikit-learn>=1.3",
+    "pyarrow>=14.0",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
